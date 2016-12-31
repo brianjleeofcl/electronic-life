@@ -1,16 +1,14 @@
 'use strict';
 
-const randomElement = function(array) {
-  return array[Math.floor(Math.random() * array.length)];
-};
+const functions = require('./functions.js');
 
 const directionNames = 'n ne e se s sw w nw'.split(' ');
 
-const Critter = function() {
-  this.direction = randomElement(directionNames);
+const Turtle = function() {
+  this.direction = functions.randomElement(directionNames);
 };
 
-Critter.prototype.act = function(view) {
+Turtle.prototype.act = function(view) {
   if (view.look(this.direction) !== ' ') {
     this.direction = view.find(' ') || 's';
   }
@@ -18,4 +16,4 @@ Critter.prototype.act = function(view) {
   return {type: 'move', direction: this.direction};
 };
 
-module.exports = Critter;
+module.exports = Turtle;
